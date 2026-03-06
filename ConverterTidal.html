@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tidal Link Converter</title>
+
+<style>
+body{
+font-family: Arial, sans-serif;
+background:#111;
+color:white;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+}
+
+.container{
+background:#1b1b1b;
+padding:25px;
+border-radius:10px;
+width:400px;
+text-align:center;
+}
+
+input{
+width:100%;
+padding:10px;
+margin-top:10px;
+border:none;
+border-radius:5px;
+}
+
+button{
+margin-top:10px;
+padding:10px;
+width:100%;
+border:none;
+border-radius:5px;
+background:black;
+color:white;
+cursor:pointer;
+}
+
+button:hover{
+background:#333;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Tidal Link Converter</h2>
+
+<input id="tidalInput" type="text" placeholder="Paste Tidal link here">
+
+<button onclick="convertLink()">Convert Link</button>
+
+<input id="outputLink" type="text" placeholder="Converted link will appear here" readonly>
+
+<button onclick="copyLink()">Copy Link</button>
+
+</div>
+
+<script>
+
+function convertLink(){
+
+let input = document.getElementById("tidalInput").value;
+
+if(!input){
+alert("Paste a Tidal link first");
+return;
+}
+
+let converted = input.replace("tidal.com","tidal.qqdl.site");
+
+document.getElementById("outputLink").value = converted;
+
+}
+
+function copyLink(){
+
+const text = document.getElementById("outputLink");
+
+text.select();
+text.setSelectionRange(0,99999);
+
+try{
+document.execCommand("copy");
+alert("Link copied");
+}
+catch(err){
+alert("Copy failed");
+console.error(err);
+}
+
+}
+
+</script>
+
+</body>
+</html>
